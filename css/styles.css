@@ -1,0 +1,8 @@
+.hoer{
+    cursor: pointer;
+}
+.hoer:hover{
+    background-color: aliceblue !important;
+    color: black !important;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
