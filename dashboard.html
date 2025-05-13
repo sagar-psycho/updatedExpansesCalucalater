@@ -10,39 +10,39 @@
 </head>
 <body class="bg-light">
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <nav class="navbar navbar-expand-lg navbar bg-blue px-3">
     <a class="navbar-brand" href="#">Expense Tracker</a>
-    <div class="ms-auto text-white">
+    <div class="ms-auto">
       Auto Logout in: <span id="countdown">60</span>s
     </div>
+    <div>
+      <button class="btn btn-danger m-2" onclick="logout()">Logout</button>
+    </div>
+      <button class="btn btn-outline-dark" onclick="toggleTheme()">Toggle&nbsp;Theme</button>
   </nav>
 
-  <!-- Main Container -->
   <div class="container mt-4">
-    <!-- Summary Cards -->
     <div class="row text-center mb-4">
       <div class="col-md-4">
-        <div class="card p-3 bg-primary text-white shadow-sm mb-3">
+        <div class="card p-3 bg-primary text-white shadow-sm mb-3 hoer">
           <h5>Balance</h5>
-          <h3 id="balance">₹0</h3>
+          <h3 id="balance">₹ 0</h3>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card p-3 bg-success text-white shadow-sm mb-3">
+        <div class="card p-3 bg-success text-white shadow-sm mb-3 hoer">
           <h5>Total Income</h5>
-          <h3 id="income">₹0</h3>
+          <h3 id="income">₹ 0</h3>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card p-3 bg-danger text-white shadow-sm mb-3">
+        <div class="card p-3 bg-danger text-white shadow-sm mb-3 hoer">
           <h5>Total Expenses</h5>
-          <h3 id="expenses">₹0</h3>
+          <h3 id="expenses">₹ 0</h3>
         </div>
       </div>
     </div>
 
-    <!-- Transaction Form -->
     <div class="card p-4 shadow-sm mb-4">
       <div class="row g-3">
         <div class="col-md-2">
@@ -65,10 +65,9 @@
       </div>
     </div>
 
-    <!-- Sort and Toggle -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <button class="btn btn-outline-dark" onclick="toggleTheme()">Toggle&nbsp;Theme</button>
       <div class="d-flex align-items-center gap-2">
+        <p class="mt-2">Sort by :</p>
         <select id="sortType" class="form-select d-inline w-auto" onchange="sortByType()">
           <option value="all">All</option>
           <option value="income">Income</option>
@@ -84,7 +83,6 @@
       </div>
     </div>
     <div id="downloadMessage" class="mt-2 fw-bold"></div>
-    <!-- Transactions Table -->
     <div class="table-responsive">
       <table class="table table-bordered table-striped align-middle text-center" id="transactionsTable">
         <thead class="table-dark">
@@ -99,7 +97,7 @@
           </tr>
         </thead>
         <tbody id="transactionBody">
-          <!-- Transactions will be inserted here -->
+
         </tbody>
       </table>
     </div>
@@ -123,4 +121,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </body>
-</html> 
+</html>
