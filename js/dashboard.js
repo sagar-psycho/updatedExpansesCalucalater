@@ -1,5 +1,3 @@
-// js/dashboard.js
-
 let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 let transactionId = 1;
 
@@ -14,9 +12,9 @@ function updateSummary() {
     else expense += t.amount;
   });
 
-  document.getElementById("income").innerText = `₹${income}`;
-  document.getElementById("expenses").innerText = `₹${expense}`;
-  document.getElementById("balance").innerText = `₹${income - expense}`;
+  document.getElementById("income").innerText = `₹ ${income}`;
+  document.getElementById("expenses").innerText = `₹ ${expense}`;
+  document.getElementById("balance").innerText = `₹ ${income - expense}`;
 }
 
 function renderTransactions() {
@@ -36,7 +34,7 @@ function renderTransactions() {
       <td>${t.date}</td>
       <td>${t.type}</td>
       <td>₹${t.amount}</td>
-      <td>$${t.total}</td>
+      <td>₹${t.total}</td>
       <td>${t.description}</td>
       <td>
         <button class="btn btn-sm btn-warning me-1" onclick="editTransaction(${index})">Edit</button>
@@ -124,7 +122,7 @@ function updateStorage() {
 }
 function getFormattedDate() {
   const now = new Date();
-  return now.toISOString().split("T")[0]; // returns YYYY-MM-DD
+  return now.toISOString().split("T")[0];
 }
 
 function downloadTable() {
@@ -147,7 +145,6 @@ function downloadTable() {
       clearInterval(interval);
       messageEl.innerHTML = `<span style="color: green;">Your file is downloaded in this format (${type.toUpperCase()})</span>`;
 
-      // Trigger the actual download
       if (type === "pdf") {
         exportToPDF();
       } else if (type === "excel") {
@@ -158,7 +155,6 @@ function downloadTable() {
 }
 
 
-// PDF Export
 function exportToPDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
@@ -186,7 +182,6 @@ function exportToPDF() {
   doc.save(`transactions_${getFormattedDate()}.pdf`);
 }
 
-// Excel Export
 function exportToExcel() {
   const wsData = [
     ["No.", "Date", "Type", "Amount", "Total", "Description"]
@@ -228,7 +223,6 @@ function toggleTheme() {
   document.body.classList.toggle("text-white");
 }
 
-// Initialize
 renderTransactions();
 updateSummary();
 function updateCredentials() {
@@ -242,7 +236,6 @@ function updateCredentials() {
     return;
   }
 
-  // Store new credentials
   localStorage.setItem("username", newUsername);
   localStorage.setItem("password", newPassword);
 
@@ -272,14 +265,21 @@ function updateCredentials() {
     return;
   }
 
-  // Save new credentials
   localStorage.setItem("username", newUsername);
   localStorage.setItem("password", newPassword);
 
   msgEl.innerHTML = `✅ Your username changed from <b>${oldUsername}</b> to <b>${newUsername}</b> and password to <b>${newPassword}</b>`;
   msgEl.style.color = "green";
 
-  // Optional: log to console
   console.log("Updated Username:", newUsername);
   console.log("Updated Password:", newPassword);
+}
+function logout() {
+  localStorage.removeItem("isLoggedIn");
+  window.location.href = "index.html";
+}
+const isLoggedIn = localStorage.getItem("isLoggedIn");
+if (!isLoggedIn || isLoggedIn !== "true") {
+  alert("Please login first to access the dashboard.");
+  window.location.href = "index.html";
 }
